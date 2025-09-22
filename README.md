@@ -41,3 +41,107 @@ De combinatie van deze elementen vormt de moderne OxCal-workflow:
     De JavaScript-code in de outputvensters van de browser leest dit .js-bestand en genereert de interactieve grafieken en tabellen. Deze visualisaties zijn cruciaal om de resultaten van de simulaties te interpreteren, bijvoorbeeld door te plotten hoe de precisie van een Boundary toeneemt naarmate er meer gesimuleerde dateringen aan het model worden toegevoegd.
 
 Kortom, een "OxCal-Simulation-Model-in-JavaScript" beschrijft perfect de praktijk waarbij een archeoloog een simulatiemodel (met R_Simulate) opzet en uitvoert binnen de JavaScript-interface van OxCal, waarna de resultaten worden verwerkt en gevisualiseerd met behulp van dezelfde JavaScript-technologie. Het is de combinatie van een krachtige statistische functie (R_Simulate) en een moderne, toegankelijke webtechnologie (JavaScript) die OxCal tot zo'n veelzijdig instrument maakt voor het bouwen van robuuste chronologieën.
+
+Scenario
+
+Stel je voor dat je een nederzetting opgraaft met drie duidelijke, opeenvolgende bewoningslagen (fasen). Je weet uit het veldwerk dat Fase 1 de oudste is, gevolgd door Fase 2, en daarna de jongste, Fase 3.
+
+Je wilt testen hoe goed een Bayesiaans model deze chronologie kan bepalen. Daarvoor simuleer je een "perfecte" dataset waarbij je de ware kalenderjaren van de monsters zelf bepaalt:
+
+    Fase 1: Eén monster van rond 750 v.Chr.
+
+    Fase 2: Twee monsters, één van 650 v.Chr. en één van 600 v.Chr.
+
+    Fase 3: Eén monster van rond 525 v.Chr.
+
+OxCal-code
+
+De onderstaande code wordt ingevoerd in OxCal. De Simulate() functie wordt gebruikt in plaats van de gebruikelijke R_Date() functie.
+Code snippet
+
+Plot()
+{
+ // We definiëren een overkoepelende volgorde (Sequence)
+ // voor de hele stratigrafie.
+ Sequence("Simulatie Voorbeeld Nederzetting")
+ {
+  // Een grens (Boundary) voor het begin van de activiteit.
+  Boundary("Start");
+
+  // De eerste en oudste fase.
+  Phase("Fase 1")
+  {
+   // Simuleer een C14-monster met een 'ware' datum van 750 v.Chr.
+   // en een standaardafwijking van 30 jaar.
+   Simulate("Monster_1", -749, 30);
+  };
+
+  // De tweede fase, die na Fase 1 komt.
+  Phase("Fase 2")
+  {
+   Simulate("Monster_2", -649, 30);
+   Simulate("Monster_3", -599, 30);
+  };
+
+  // De laatste en jongste fase.
+  Phase("Fase 3")
+  {
+   Simulate("Monster_4", -524, 30);
+  };
+
+  // Een grens voor het einde van de activiteit.
+  Boundary("Einde");
+ };
+};
+
+N.B.: Jaren voor Christus worden als negatieve getallen ingevoerd. Technisch gezien is 750 v.Chr. het jaar -749, omdat er geen jaar 0 is.
+
+Uitleg van de code
+
+    Plot(): De container voor de hele visualisatie.
+
+    Sequence(): Dit is het belangrijkste commando. Het vertelt OxCal dat alle elementen die erin staan (Phases, Boundaries) in een strikte chronologische volgorde moeten plaatsvinden. De bovenste is de oudste.
+
+    Boundary(): Definieert het begin- of eindpunt van een Sequence of Phase.
+
+    Phase(): Groepeert één of meerdere dateringen die (archeologisch gezien) gelijktijdig zijn. Binnen een Phase is er geen chronologische volgorde.
+
+    Simulate("Naam", Jaartal, Foutmarge): Dit is de kern van de simulatie.
+
+        "Naam": De naam die je aan het gesimuleerde monster geeft (bv. "Monster_1").
+
+        Jaartal: Het "ware" kalenderjaar (in AD/BC) dat je wilt simuleren.
+
+        Foutmarge: De standaardafwijking (1σ) die je aan de gesimuleerde C14-meting wilt meegeven. Een waarde van 30 ($^{14}$C-jaren) is realistisch.
+
+Wat gebeurt er als je dit uitvoert? ⚙️
+
+Wanneer je deze code uitvoert, doet OxCal het volgende:
+
+    Het neemt het "ware" kalenderjaar (bv. -749, dus 750 v.Chr.).
+
+    Het kijkt op de kalibratiecurve (bv. IntCal20) welke C14-leeftijd (in BP) hiermee correspondeert.
+
+    Het voegt een willekeurige 'meetfout' toe op basis van de opgegeven foutmarge (bv. 30 jaar).
+
+    Het resultaat is een set van gesimuleerde, ongekalibreerde C14-dateringen (bv. 2580±30 BP).
+
+Waarom is dit nuttig? 🤔
+
+Het grote voordeel is dat je de "ware" chronologie kent. Je kunt de gesimuleerde C14-dateringen (de output) nu in een nieuw, leeg OxCal-model plakken (dit keer met R_Date in plaats van Simulate).
+
+Vervolgens laat je dat model draaien en vergelijk je de berekende Bayesiaanse ouderdomsmodellen met de "ware" data die je zelf had ingevoerd. Zo kun je controleren of je model-structuur (Sequence, Phase, etc.) nauwkeurig en precies genoeg is om de werkelijkheid te reconstrueren. Het is een cruciale stap om de robuustheid van je chronologische interpretatie te valideren.
+
+I've created the HTML file as requested.
+
+It includes:
+
+    Explanation: A clear description of the archaeological scenario and the corresponding OxCal code, making it easy to understand the context.
+
+    Interactive Simulation: A button that, when clicked, runs a JavaScript function to simulate the C14 dating process for the predefined samples.
+
+    Dynamic Results: The output shows the "true" known dates alongside the newly generated, simulated C14 measurements, which change with each click to represent measurement variability.
+
+    Modern Design: The page is styled using Tailwind CSS for a clean, responsive, and professional look.
+
+You can now open the oxcal-simulation.html file in any web browser to see the model in action.

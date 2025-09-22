@@ -1,0 +1,68 @@
+{
+  "title": "Analyse van Relevante Webpagina's",
+  "summary": "De verstrekte lijst met URL's verwijst naar een verzameling van voornamelijk academische, wetenschappelijke en educatieve bronnen. De domeinen suggereren een sterke focus op wetenschappelijke publicaties, archeologisch onderzoek (met name radiokoolstofdatering), erfgoedbeheer en onderzoeksdata. De aanwezigheid van YouTube duidt ook op educatieve of demonstratieve video-inhoud.",
+  "source_categories": [
+    {
+      "category": "Wetenschappelijke Uitgevers",
+      "description": "Portalen voor peer-reviewed tijdschriften en publicaties.",
+      "domains": [
+        "onlinelibrary.wiley.com",
+        "cambridge.org",
+        "egusphere.copernicus.org"
+      ]
+    },
+    {
+      "category": "Onderzoeks- en Dateringsinstituten",
+      "description": "Gespecialiseerde instituten, met name gericht op radiokoolstofdatering en archeologie.",
+      "domains": [
+        "c14.arch.ox.ac.uk"
+      ]
+    },
+    {
+      "category": "Onderzoeksnetwerken en Databases",
+      "description": "Platformen voor het delen van onderzoeksartikelen en toegang tot wetenschappelijke databases.",
+      "domains": [
+        "researchgate.net",
+        "pmc.ncbi.nlm.nih.gov"
+      ]
+    },
+    {
+      "category": "Erfgoed- en Overheidsorganisaties",
+      "description": "Officiële instanties gericht op het beheer en onderzoek van cultureel erfgoed.",
+      "domains": [
+        "historicengland.org.uk"
+      ]
+    },
+    {
+      "category": "Multimedia en Educatie",
+      "description": "Platform voor video-inhoud, waarschijnlijk gebruikt voor tutorials, lezingen of demonstraties.",
+      "domains": [
+        "youtube.com"
+      ]
+    }
+  ],
+  "original_list": [
+    "onlinelibrary.wiley.com",
+    "onlinelibrary.wiley.com",
+    "historicengland.org.uk",
+    "historicengland.org.uk",
+    "egusphere.copernicus.org",
+    "egusphere.copernicus.org",
+    "c14.arch.ox.ac.uk",
+    "c14.arch.ox.ac.uk",
+    "cambridge.org",
+    "cambridge.org",
+    "c14.arch.ox.ac.uk",
+    "c14.arch.ox.ac.uk",
+    "researchgate.net",
+    "researchgate.net",
+    "pmc.ncbi.nlm.nih.gov",
+    "pmc.ncbi.nlm.nih.gov",
+    "researchgate.net",
+    "researchgate.net",
+    "cambridge.org",
+    "cambridge.org",
+    "youtube.com",
+    "youtube.com"
+  ]
+}
